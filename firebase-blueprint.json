@@ -1,0 +1,43 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Stored user profile including voice fingerprint and basic identity.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "voiceSignature": { 
+          "type": "array",
+          "description": "Average MFCC vector for voice biometric comparison."
+        },
+        "isVoiceEnrolled": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Message": {
+      "title": "Encrypted Message",
+      "description": "A message encrypted with AES-256 before storage.",
+      "type": "object",
+      "properties": {
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "encryptedText": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "iv": { "type": "string", "description": "Initialization vector for AES decryption." }
+      },
+      "required": ["senderId", "encryptedText", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles and their voice fingerprints."
+    },
+    "/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Global encrypted chat history."
+    }
+  }
+}

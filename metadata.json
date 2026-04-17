@@ -1,0 +1,8 @@
+{
+  "name": "Namba Tha",
+  "description": "A highly secure, private communication web application with Google OAuth and Voice Biometric authentication.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": []
+}
